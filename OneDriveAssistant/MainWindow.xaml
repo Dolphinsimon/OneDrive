@@ -1,8 +1,11 @@
-﻿<Window x:Class="OneDriveAssistant.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:SelectFile="clr-namespace:SelectFile;assembly=SelectPathControl" x:Class="OneDriveAssistant.MainWindow"
+        Title="OneDriveAssistant" Height="350" Width="525">
     <Grid>
-        
+        <SelectFile:SelectPathControl HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="97,212,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Abort" HorizontalAlignment="Left" Margin="320,212,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
