@@ -1,0 +1,11 @@
+bin
+obj
+*.suo
+*.mdf
+*.ldf
+*.log
+*.sln.ide
+*.user
+*.zip
+*.opensdf
+*.sdf
