@@ -1,51 +1,60 @@
 ﻿using System;
+using System.IO;
 
 namespace OneDriveAssistant
 {
     public class WorkFlow
     {
-        private string _file;
-        private static readonly File MyFile=new File();
-        public string File
+        private readonly string _encodingErrors;
+        private readonly string _path;
+        private static readonly ProcessEncodingErrors MyEncodingErrors = new ProcessEncodingErrors();
+        public WorkFlow(string path)
         {
-            set { _file = value; }
+            _path = path;
+            _encodingErrors = path + "\\Encoding Errors.txt";                
         }
-
-        public WorkFlow(string filepath)
+        /// <summary>
+        /// Rename files
+        /// </summary>
+        /// <returns>successful or failed</returns>
+        public Result RestoreFileName()
         {
-            File = filepath;
-        }
-
-        public bool RestoreFileName()
-        {
+            Result result=new Result();
             try
             {
-                bool success = false;
-                int rows = MyFile.GetRows(_file);
+                int rows = MyEncodingErrors.GetRows(_encodingErrors);
                 for (int i = 0; i < rows; ++i)
                 {
-                    string oneline = MyFile.GetOneLine(_file, i);
+                    string oneline = MyEncodingErrors.GetOneLine(_encodingErrors, i);
                     if (oneline == null) continue;
-                    string[] filenamearray = MyFile.GetFileName(oneline);
+                    string[] filenamearray = MyEncodingErrors.GetFileName(oneline);
                     //Get an array contains two elements:Original File Name & New File Name
                     if (filenamearray == null) continue;
-                    string originalfilename = MyFile.GetFileName(filenamearray);
-                    success=MyFile.Rename(filenamearray[1], originalfilename);
-                    if (success == false) break;
+                    try
+                    {
+                        string sourceFilePath = _path + "\\" + filenamearray[1];
+                        string destFilePath = _path + "\\" + filenamearray[0];
+                        string directory = MyEncodingErrors.FormatDirectory(filenamearray[0]);
+                        Directory.CreateDirectory(_path+directory);
+                        File.Move(sourceFilePath, destFilePath);
+                        result.Success = true;
+                        result.FileName = oneline;
+                    }
+                    catch (Exception)
+                    {
+                        result.Success = false;
+                    }
+                    if (result.Success == false) break;
                 }
-                return success;
+                return result;
             }
             catch (Exception)
             {
-                return false;
-            }           
+                result.Success = false;
+                result.FileName = "Failed!";
+                return result;
+            }    
         }
 
-        public bool RestoreFolderName()
-        {
-
-            return false;
-
-        }
     }
 }
