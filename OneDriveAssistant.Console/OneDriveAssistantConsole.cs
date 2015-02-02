@@ -26,8 +26,14 @@ namespace OneDriveAssistant
                     {
                         WorkFlow myWorkFlow=new WorkFlow(path);
                         Result myResult= myWorkFlow.RestoreFileName();
-                        if(myResult.Success) {Console.WriteLine("Process successful!");}
-                        Console.WriteLine("Process {0} failed,please try again!",myResult.FileName);
+                        if (myResult.Success)
+                        {
+                            Console.WriteLine("Process successful!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Process {0} failed,please try again!", myResult.FileName);
+                        }                        
                         break;
                     }
                 }
@@ -49,8 +55,14 @@ namespace OneDriveAssistant
                     {
                         WorkFlow myWorkFlow = new WorkFlow(args[0]);
                         Result myResult = myWorkFlow.RestoreFileName();
-                        if (myResult.Success) {Console.WriteLine("Process successful!");}
-                        Console.WriteLine("Process {0} failed,please try again!",myResult.FileName);
+                        if (myResult.Success)
+                        {
+                            Console.WriteLine("Process successful!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Process {0} failed,please try again!", myResult.FileName);
+                        }
                         break;
                     }
                     

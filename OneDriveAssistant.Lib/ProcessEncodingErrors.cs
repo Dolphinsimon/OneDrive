@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace OneDriveAssistant
@@ -12,36 +11,15 @@ namespace OneDriveAssistant
         /// </summary>
         /// <param name="filePath">filepath</param>
         /// <returns></returns>
-        public int GetRows(string filePath)
+        public string[] GetRows(string filePath)
         {
                 using (StreamReader read = new StreamReader(filePath, Encoding.UTF8))
                 {
-                    return read.ReadToEnd().Split('\n').Length;
+                    string[] error = read.ReadToEnd().Split('\n');
+                    return error;
                 } 
         }
 
-        /// <summary>
-        /// Get a line of the encoding errors.txt
-        /// </summary>
-        /// <param name="filepath">filepath of the encoding errors.txt</param>
-        /// <param name="index">the index of line</param>
-        /// <returns>One line in encoding errors.txt</returns>
-        public string GetOneLine(string filepath, int index)
-        {
-            using (FileStream fs = new FileStream(filepath, FileMode.Open))
-            {
-                using (StreamReader sr = new StreamReader(fs))
-                {
-                    if (sr.EndOfStream) return null;
-                    string sLine = null;
-                    for (int i = 0; i <= index; ++i)
-                    {
-                        sLine = sr.ReadLine();
-                    }
-                    return string.IsNullOrEmpty(sLine) ? null : sLine;
-                }
-            }
-        }
         /// <summary>
         /// Split text to file names
         /// </summary>
@@ -55,7 +33,11 @@ namespace OneDriveAssistant
             string[] pathStrings = text.Split(nameSeparator,StringSplitOptions.None);
             return pathStrings;
         }
-
+        /// <summary>
+        /// Get the directory
+        /// </summary>
+        /// <param name="originalfilepath"></param>
+        /// <returns></returns>
         public string FormatDirectory(string originalfilepath)
         {
             char[] directorySeparator = { '/' };
