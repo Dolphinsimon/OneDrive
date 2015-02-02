@@ -49,6 +49,22 @@ namespace OneDriveAssistant
             }
             return directory;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourcefilepath"></param>
+        /// <returns></returns>
+        public string FormatFile(string sourcefilepath)
+        {
+            char[] directorySeparator = { '/' };
+            string[] newDirectory = sourcefilepath.Split(directorySeparator);
+            string directory=newDirectory[newDirectory.Length-1];
+            return directory;
+        }
 
+        public string GetFullPath(string path, string relativePath)
+        {
+            return relativePath != null ? path + relativePath : null;
+        }
     }
 }

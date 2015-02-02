@@ -31,11 +31,23 @@ namespace OneDriveAssistant
                     if (filenamearray == null) continue;
                     try
                     {
-                        string sourceFilePath = _path + "\\" + filenamearray[1];
                         string destFilePath = _path + "\\" + filenamearray[0];
-                        string directory = MyEncodingErrors.FormatDirectory(filenamearray[0]);
-                        Directory.CreateDirectory(_path+directory);
-                        File.Move(sourceFilePath, destFilePath);
+                        string sourceFilePath = _path + "\\" + filenamearray[1];
+                        string destDirectory = _path+MyEncodingErrors.FormatDirectory(filenamearray[0]);
+                        string sourceDirectory =_path+ MyEncodingErrors.FormatDirectory(filenamearray[1]);
+                        string sourceFile = MyEncodingErrors.FormatFile(filenamearray[1]);
+                        if (!Directory.Exists(destDirectory))
+                        {
+                            Directory.CreateDirectory(destDirectory); 
+                        }
+                        if (Directory.GetFiles(sourceDirectory, sourceFile).Length >= 1)
+                        {
+                            File.Move(sourceFilePath, destFilePath); 
+                        }                      
+                        if (Directory.GetFiles(sourceDirectory).Length < 1)
+                        {
+                            Directory.Delete(sourceDirectory);
+                        }
                         result.Success = true;
                         result.FileName = oneline;
                     }

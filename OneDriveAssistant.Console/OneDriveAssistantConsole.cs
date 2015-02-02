@@ -14,11 +14,11 @@ namespace OneDriveAssistant
                 string path = Console.ReadLine();
                 if (path == null) Console.WriteLine("Wrong input string,please enterthe directory of Encoding_error.txt");
                 // ReSharper disable once AssignNullToNotNullAttribute
-                DirectoryInfo folder=new DirectoryInfo(path);
-                FileInfo[] files = folder.GetFiles();
-                foreach (FileInfo file in files)
+                string[]files=Directory.GetFiles(path);
+                if (files.Length < 1) continue;
+                foreach (string file in files)
                 {
-                    if (file.Name != "Encoding Errors.txt")
+                    if (file!= "Encoding Errors.txt")
                     {
                         Console.WriteLine("Can't find the Enconding Errors.txt,please try again!");
                     }

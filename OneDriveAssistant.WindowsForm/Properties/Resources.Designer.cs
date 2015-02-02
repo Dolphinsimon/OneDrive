@@ -59,5 +59,23 @@ namespace OneDriveAssistant.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t find the Enconding Errors.txt,please try again!.
+        /// </summary>
+        internal static string FILE_NOT_FIND_ERROR {
+            get {
+                return ResourceManager.GetString("FILE_NOT_FIND_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process successful!.
+        /// </summary>
+        internal static string PROCESS_SUCESS {
+            get {
+                return ResourceManager.GetString("PROCESS_SUCESS", resourceCulture);
+            }
+        }
     }
 }

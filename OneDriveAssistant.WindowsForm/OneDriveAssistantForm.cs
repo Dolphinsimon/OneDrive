@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.IO;
+using System.Windows.Forms;
+using OneDriveAssistant.Properties;
 
 namespace OneDriveAssistant
 {
@@ -8,5 +11,48 @@ namespace OneDriveAssistant
         {
             InitializeComponent();
         }
+
+        private void OneDriveAssistantForm_Load(object sender, EventArgs e)
+        {
+            errorFolderBrowser.Description = "Please select the folder that contains Ecoding Errors.txt!";
+            errorFolderBrowser.ShowDialog();
+        }
+
+        private void buttonProcess_Click(object sender, EventArgs e)
+        {
+            string path = errorFolderBrowser.DirectoryPath;
+            DirectoryInfo folder = new DirectoryInfo(path);
+            FileInfo[] files = folder.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                if (file.Name != "Encoding Errors.txt")
+                {
+                    MessageBox.Show(Resources.FILE_NOT_FIND_ERROR);
+                }
+                else
+                {
+                    WorkFlow myWorkFlow = new WorkFlow(path);
+                    Result myResult = myWorkFlow.RestoreFileName();
+                    if (myResult.Success)
+                    {
+                        MessageBox.Show(Resources.PROCESS_SUCESS);
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"Process {0} failed,please try again!", myResult.FileName);
+                    }
+                    break;
+                }
+            }
+        }
+
+        private void buttonAbort_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
+
+
     }
 }
