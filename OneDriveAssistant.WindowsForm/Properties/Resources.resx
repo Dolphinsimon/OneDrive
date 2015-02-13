@@ -123,4 +123,10 @@
   <data name="PROCESS_SUCESS" xml:space="preserve">
     <value>Process successful!</value>
   </data>
+  <data name="Process" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="failed_please_try_again_" xml:space="preserve">
+    <value> failed,please try again!</value>
+  </data>
 </root>

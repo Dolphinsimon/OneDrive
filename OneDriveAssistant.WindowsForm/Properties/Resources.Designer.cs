@@ -61,11 +61,29 @@ namespace OneDriveAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  failed,please try again!.
+        /// </summary>
+        internal static string failed_please_try_again_ {
+            get {
+                return ResourceManager.GetString("failed_please_try_again_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t find the Enconding Errors.txt,please try again!.
         /// </summary>
         internal static string FILE_NOT_FIND_ERROR {
             get {
                 return ResourceManager.GetString("FILE_NOT_FIND_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process.
+        /// </summary>
+        internal static string Process {
+            get {
+                return ResourceManager.GetString("Process", resourceCulture);
             }
         }
         

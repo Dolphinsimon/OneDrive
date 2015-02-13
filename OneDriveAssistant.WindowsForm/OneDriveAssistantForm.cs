@@ -39,7 +39,7 @@ namespace OneDriveAssistant
                     }
                     else
                     {
-                        MessageBox.Show(@"Process {0} failed,please try again!", myResult.FileName);
+                        MessageBox.Show(Resources.Process+myResult.FileName+Resources.failed_please_try_again_);
                     }
                     break;
                 }
