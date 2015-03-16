@@ -13,7 +13,7 @@ namespace OneDriveAssistant
                 string path = Console.ReadLine();
                 if (path == null)
                 {
-                    Console.WriteLine("Wrong input string,please enterthe directory of Encoding_error.txt");
+                    Console.WriteLine("Wrong input string,please enter the directory of Encoding_error.txt");
                 }
                 else
                 {
