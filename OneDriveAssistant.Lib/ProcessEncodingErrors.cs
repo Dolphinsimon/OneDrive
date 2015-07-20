@@ -10,14 +10,13 @@ namespace OneDriveAssistant
         /// Get the total number of rows
         /// </summary>
         /// <param name="filePath">filepath</param>
-        /// <returns></returns>
+        /// <returns>An array that contains every row.</returns>
         public string[] GetRows(string filePath)
         {
-                using (StreamReader read = new StreamReader(filePath, Encoding.UTF8))
-                {
-                    string[] error = read.ReadToEnd().Split('\n');
-                    return error;
-                } 
+            using (var reader = new StreamReader(filePath, Encoding.UTF8))
+            {
+                return reader.ReadToEnd().Split('\n');
+            } 
         }
 
         /// <summary>
@@ -30,35 +29,34 @@ namespace OneDriveAssistant
             //text = "Original File Name  ->  New File Name";
             if (!text.Contains("->") || text.Contains("Original File Name  ->  New File Name")) return null;
             string[] nameSeparator = { " -> " };
-            string[] pathStrings = text.Split(nameSeparator,StringSplitOptions.None);
-            return pathStrings;
+            return text.Split(nameSeparator,StringSplitOptions.None);
         }
         /// <summary>
-        /// Get the directory
+        /// Get the directory of Encoding errors.txt except itself.
         /// </summary>
         /// <param name="originalfilepath"></param>
         /// <returns></returns>
         public string FormatDirectory(string originalfilepath)
         {
             char[] directorySeparator = { '/' };
-            string[] newDirectory = originalfilepath.Split(directorySeparator);
-            string directory="";
-            for (int i = 0; i < newDirectory.Length-1; ++i)
+            var newDirectory = originalfilepath.Split(directorySeparator);
+            var directory="";
+            for (var i = 0; i < newDirectory.Length-1; ++i)
             {
                 directory+="/"+ newDirectory[i];
             }
             return directory;
         }
         /// <summary>
-        /// 
+        /// Get the file name of specified directory.
         /// </summary>
-        /// <param name="sourcefilepath"></param>
-        /// <returns></returns>
+        /// <param name="sourcefilepath">The file path.</param>
+        /// <returns>The file name.</returns>
         public string FormatFile(string sourcefilepath)
         {
             char[] directorySeparator = { '/' };
-            string[] newDirectory = sourcefilepath.Split(directorySeparator);
-            string directory=newDirectory[newDirectory.Length-1];
+            var newDirectory = sourcefilepath.Split(directorySeparator);
+            var directory=newDirectory[newDirectory.Length-1];
             return directory;
         }
 
