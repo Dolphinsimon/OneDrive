@@ -49,6 +49,10 @@
       <Project>{6f2d2f49-2740-4d14-8ab6-ca0e180bad2c}</Project>
       <Name>OneDriveAssistant.Bll</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OneDriveAssistant.Lib\OneDriveAssistant.Lib.csproj">
+      <Project>{07462E2E-76E0-4D8C-B5B0-81211634EE15}</Project>
+      <Name>OneDriveAssistant.Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
